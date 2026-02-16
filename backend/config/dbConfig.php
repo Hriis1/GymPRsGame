@@ -4,7 +4,7 @@ $mysqli = null;
 
 try {
     $host = "localhost";
-    $dbname = "tu_choices";
+    $dbname = "gym_prs_game";
     $dbusername = "root";
     $dbpassword = "";
 
