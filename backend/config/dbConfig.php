@@ -1,24 +1,19 @@
 <?php
 
-$mysqli = null;
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 try {
-    $host = "localhost";
-    $dbname = "gym_prs_game";
-    $dbusername = "root";
-    $dbpassword = "";
-
-    $mysqli = new mysqli($host, $dbusername, $dbpassword, $dbname);
-    if ($mysqli->connect_errno) {
-        throw new Exception("Failed to connect to MySQL: " . $mysqli->connect_error);
-    }
-    mysqli_query($mysqli, "SET NAMES 'UTF8'");
+    $mysqli = new mysqli(
+        "localhost",
+        "root",
+        "",
+        "gym_prs_game"
+    );
+    
+    $mysqli->set_charset("utf8");
 
 } catch (mysqli_sql_exception $e) {
     die("MySQL error: " . $e->getMessage());
-} catch (Exception $e) {
+} catch (\Exception $e) {
     die("General error: " . $e->getMessage());
 }
-
-// Report all mysqli errors as exceptions
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
