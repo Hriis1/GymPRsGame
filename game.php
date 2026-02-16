@@ -3,7 +3,7 @@ require_once __DIR__ . "/header.php";
 ?>
 
 <main>
-    landing page xd
+    game xd
 </main>
 
 <?php

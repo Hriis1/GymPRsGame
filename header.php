@@ -41,7 +41,7 @@ require_once __DIR__ . "/topScript.php";
                     <!-- Left links -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= $projectRoot ?>/index.php">Home</a>
+                            <a class="nav-link" href="<?= $projectRoot ?>">Home</a>
                         </li>
                     </ul>
 
