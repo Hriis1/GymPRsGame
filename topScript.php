@@ -1,9 +1,9 @@
 <?php
 
 //Config requires
-require_once "backend/config/sessionConfig.php";
-require_once "backend/config/dbConfig.php";
-require_once "backend/utils/dbUtils.php";
+require_once __DIR__ . "/backend/config/sessionConfig.php";
+require_once __DIR__ . "/backend/config/dbConfig.php";
+require_once __DIR__ . "/backend/utils/dbUtils.php";
 
 
 // calculate URL path to project root (the folder of this file)
@@ -16,5 +16,6 @@ $projectRoot = str_replace(
 //if user is not logged in
 if (!isset($_SESSION["userID"])) {
     //header("Location: " . $projectRoot . "/users/login.php");
-    exit;
+    /* echo "no user";
+    exit; */
 }

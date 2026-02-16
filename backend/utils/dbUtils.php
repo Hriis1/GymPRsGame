@@ -1,6 +1,6 @@
 <?php
 
-require_once "../config/dbConfig.php";
+require_once __DIR__ . "/../config/dbConfig.php";
 function getFromDBByID($table_name, $id, $mysqli, $idRowName = 'id', $selFields = "*")
 {
     $stmt = $mysqli->prepare("SELECT $selFields FROM " . $table_name . " WHERE " . $idRowName . " = ?");
