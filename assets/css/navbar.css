@@ -1,0 +1,56 @@
+.gym-navbar {
+            height: 48px;
+            background-color: #101214;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+        }
+
+        .gym-navbar::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background-image: url("https://plus.unsplash.com/premium_photo-1733342465008-17e1bf41f55a?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGFyayUyMGNvbmNyZXRlfGVufDB8fDB8fHww");
+            background-repeat: repeat;
+
+            opacity: 0.88;
+            /* increased from 0.08 */
+            mix-blend-mode: overlay;
+            /* gives depth */
+            pointer-events: none;
+        }
+
+
+
+        .navbar .nav-link {
+            font-size: 14px;
+            color: #cbd5e1 !important;
+            transition: 0.2s;
+        }
+
+        .navbar .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .navbar-brand {
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Circular profile */
+        .profile-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #1e3a8a;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .profile-icon:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
