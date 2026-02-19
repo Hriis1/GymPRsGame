@@ -1,15 +1,5 @@
 <?php
-//Config requires
-require_once __DIR__ . "/../backend/config/sessionConfig.php";
-require_once __DIR__ . "/../backend/config/dbConfig.php";
-require_once __DIR__ . "/../backend/utils/dbUtils.php";
-
-// calculate URL path to project root (the folder of this file)
-$projectRoot = str_replace(
-    realpath($_SERVER['DOCUMENT_ROOT']),
-    '',
-    realpath(__DIR__ . '/')
-);
+require_once __DIR__ . "/../topScript.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,7 +28,7 @@ $projectRoot = str_replace(
                         <div class="sub">Create your account and open your own gym!</div>
                     </div>
 
-                    <form method="POST" action="<?= $projectRoot ?>/backend/auth/register.php" id="registerForm"
+                    <form method="POST" action="<?= $projectRoot; ?>/backend/auth/register.php" id="registerForm"
                         novalidate>
 
                         <div class="mb-3">
@@ -90,7 +80,10 @@ $projectRoot = str_replace(
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php
+    require_once __DIR__ . "/../scripts.php";
+    ?>
+
     <script>
         const pass = document.getElementById('pass');
         const pass2 = document.getElementById('pass2');

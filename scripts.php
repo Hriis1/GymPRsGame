@@ -13,3 +13,6 @@
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/2.3.7/js/dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/2.3.7/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- Custom -->
+<script src="<?= $projectRoot ?>/assets/js/main.js"></script>
