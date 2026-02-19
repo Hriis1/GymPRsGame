@@ -1,0 +1,110 @@
+/* assets/css/authentication.css */
+
+.page-wrap {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px 12px;
+}
+
+.card-gym {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 18px;
+
+    /* Glassy card that works on bright/dark backgrounds */
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(15, 23, 42, 0.14);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+
+    backdrop-filter: blur(10px);
+}
+
+.brand {
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    font-size: 20px;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.brand-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: 800;
+}
+
+.sub {
+    color: rgba(15, 23, 42, 0.72);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.form-control {
+    border-radius: 12px;
+    border: 1px solid rgba(15, 23, 42, 0.18);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.form-control:focus {
+    border-color: rgba(37, 99, 235, 0.55);
+    box-shadow: 0 0 0 .25rem rgba(37, 99, 235, .14);
+}
+
+.btn-primary {
+    border-radius: 12px;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    border: none;
+    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.20);
+}
+
+.btn-primary:hover {
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+}
+
+.btn-outline-secondary {
+    border-radius: 12px;
+}
+
+.muted-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.muted-link:hover {
+    text-decoration: underline;
+}
+
+.mini {
+    font-size: 12px;
+    color: rgba(15, 23, 42, 0.64);
+}
+
+.scene-hint {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 14px;
+    color: rgba(15, 23, 42, 0.60);
+    font-size: 12px;
+}
+
+.scene-pill {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(15, 23, 42, 0.10);
+    padding: 6px 10px;
+    border-radius: 999px;
+}
