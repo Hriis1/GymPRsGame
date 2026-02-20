@@ -101,10 +101,53 @@ require_once __DIR__ . "/../topScript.php";
 
             // Form submit validation
             $('#registerForm').on('submit', function (e) {
+                e.preventDefault();
+
+                $('#registerForm .is-invalid').removeClass('is-invalid'); // remove is-invalid classes
+
+                //Check passwords
                 if ($pass.val() !== $pass2.val()) {
-                    e.preventDefault();
-                    alert('Passwords do not match.');
+                    $pass2.addClass('is-invalid');
+                    $pass2[0].setCustomValidity('Passwords do not match');
+                    $pass2[0].reportValidity();
+                    return;
                 }
+
+                //Submit the form
+                submitForm("#registerForm", "../backend/users/userRouter.php", "registerUser", false, successFunc = function (res) {
+
+                    if (res == 1) { //No errors
+                        window.location.href = '../game.php'; //redirect user to game page
+                    }
+
+                    //Handle error
+                    console.log(res);
+                    if (res == -1) { //invalid username
+                        const $username = $('input[name="username"]');
+                        $username.addClass('is-invalid');
+                        $username[0].setCustomValidity('Enter a valid username');
+                        $username[0].reportValidity();
+                    } else if (res == -2) { //invalid email
+                        const $email = $('input[name="email"]');
+                        $email.addClass('is-invalid');
+                        $email[0].setCustomValidity('Enter a valid email');
+                        $email[0].reportValidity();
+                    } else if (res == -3) { //invalid password
+                        $pass.addClass('is-invalid');
+                        $pass[0].setCustomValidity('Password is too short');
+                        $pass[0].reportValidity();
+                    } else if (res == -4) { //passwords do not match
+                        $pass2.addClass('is-invalid');
+                        $pass2[0].setCustomValidity('Passwords do not match');
+                        $pass2[0].reportValidity();
+                    } else if (res == -6) { //email taken
+                        const $email = $('input[name="email"]');
+                        $email.addClass('is-invalid');
+                        $email[0].setCustomValidity('Email is already taken');
+                        $email[0].reportValidity();
+                    }
+
+                });
             });
 
         });

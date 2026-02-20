@@ -30,7 +30,7 @@ class UserService
 
         //db validation
         if (getCountFromDB("users", "WHERE email = '$emailEscaped'", $mysqli) != 0) //email is taken
-            return -5;
+            return -6;
 
         //insert in db
         $stmt = $mysqli->prepare("INSERT INTO users (username, email, pass) VALUES (?, ?, ?)");

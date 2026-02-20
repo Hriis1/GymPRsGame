@@ -3,26 +3,23 @@ function submitForm(formSelector, url, action = "", expJson = true, successFunc 
     location.reload();
 }, method = "POST") {
 
-    $(formSelector).on('submit', function (e) {
-        e.preventDefault();
+    const form = $(formSelector)[0];
+    const fd = new FormData(form);
+    if (action) fd.append('action', action);
 
-        const fd = new FormData(this);
-        if (action) fd.append('action', action);
-
-        $.ajax({
-            url: url,
-            type: method,
-            data: fd,
-            processData: false,
-            contentType: false,
-            dataType: expJson ? 'json' : undefined,
-            success: function (res) {
-                successFunc(res);
-            },
-            error: function (xhr) {
-                console.error(xhr.responseText);
-                alert('Error occurred');
-            }
-        });
+    $.ajax({
+        url: url,
+        type: method,
+        data: fd,
+        processData: false,
+        contentType: false,
+        dataType: expJson ? 'json' : undefined,
+        success: function (res) {
+            successFunc(res);
+        },
+        error: function (xhr) {
+            console.error(xhr.responseText);
+            alert('Error occurred');
+        }
     });
 }
