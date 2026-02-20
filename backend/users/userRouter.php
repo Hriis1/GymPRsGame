@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pass = $_POST["password"] ?? "";
         $passConf = $_POST["password_confirm"] ?? "";
 
-        $res = \UserService::register($username, $email, $pass, $passConf, $mysqli);
+        $res = \UserService::registerUser($username, $email, $pass, $passConf, $mysqli);
         echo $res;
     }
 }

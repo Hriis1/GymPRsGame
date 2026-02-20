@@ -6,7 +6,7 @@ class UserService
     /**
      * @return 1 - success, -1  = invalid username length, -2  = invalid email, -3  = password too short, -4  = passwords do not match, -5  = email already taken 
      * */
-    static public function register(string $username, string $email, string $pass, string $passConf, mysqli $mysqli): int
+    static public function registerUser(string $username, string $email, string $pass, string $passConf, mysqli $mysqli): int
     {
         //vars
         $usernameLen = strlen($username);
@@ -41,9 +41,33 @@ class UserService
         $stmt = $mysqli->prepare("INSERT INTO users (username, email, pass) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $hashedPass);
         $stmt->execute();
+        $newUserId = $stmt->insert_id;
         $stmt->close();
 
+        //Log in the new user
+        self::logInUser($newUserId, false, $mysqli);
+
         return 1;
+    }
+
+    static public function logOutUser(mysqli $mysqli)
+    {
+        //user id
+        $userId = $_SESSION["user_id"] ?? null;
+
+        if ($userId) { //if there was a logged in user
+            //Unset cookie
+            setcookie("gym_pbs_remember_token", "", time() - 3600, "/");
+
+            //remove the remember token from db
+            $stmt = $mysqli->prepare("UPDATE users SET remember_token = '' WHERE id = ?");
+            $stmt->bind_param("i", $userId);
+            $stmt->execute();
+            $stmt->close();
+
+            //log out user
+            unset($_SESSION["user_id"]);
+        }
     }
 
     //private
@@ -51,8 +75,33 @@ class UserService
     {
     }
 
-    private function login()
+    static private function logInUser(int $userId, bool $remember, mysqli $mysqli): void
     {
+        if ($remember)
+            self::rememberUser($userId, $mysqli);
 
+        $_SESSION["user_id"] = $userId;
+    }
+
+    /** 
+     * remember user for 1 year 
+     */
+    static function rememberUser(int $userId, mysqli $mysqli): void
+    {
+        //Generate and hash token
+        $token = bin2hex(random_bytes(32));
+        $hash = hash('sha256', $token);
+
+        //save the hashed token in db
+        $stmt = $mysqli->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
+        $stmt->bind_param("si", $hash, $userId);
+        $stmt->execute();
+        $stmt->close();
+
+        //if https only allow cookie for https otherwise dont
+        $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
+
+        //set cookie with the token
+        setcookie("gym_pbs_remember_token", $token, time() + (86400 * 365), "/", "", $secure, true);
     }
 }
