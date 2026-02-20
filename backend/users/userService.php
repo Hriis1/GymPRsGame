@@ -12,7 +12,9 @@ class UserService
         $usernameLen = strlen($username);
         $passLen = strlen($pass);
         $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
-        $emailEscaped = $mysqli->real_escape_string($email);
+        //escape
+        $email = $mysqli->real_escape_string($email);
+        $username = $mysqli->real_escape_string($username);
 
         //validate 
         //input validation
@@ -29,7 +31,10 @@ class UserService
             return -4;
 
         //db validation
-        if (getCountFromDB("users", "WHERE email = '$emailEscaped'", $mysqli) != 0) //email is taken
+        if (getCountFromDB("users", "WHERE username = '$username'", $mysqli) != 0) //username is taken
+            return -5;
+
+        if (getCountFromDB("users", "WHERE email = '$email'", $mysqli) != 0) //email is taken
             return -6;
 
         //insert in db
@@ -44,5 +49,10 @@ class UserService
     //private
     private function __construct()
     {
+    }
+
+    private function login()
+    {
+
     }
 }

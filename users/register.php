@@ -121,7 +121,6 @@ require_once __DIR__ . "/../topScript.php";
                     }
 
                     //Handle error
-                    console.log(res);
                     if (res == -1) { //invalid username
                         const $username = $('input[name="username"]');
                         $username.addClass('is-invalid');
@@ -140,6 +139,11 @@ require_once __DIR__ . "/../topScript.php";
                         $pass2.addClass('is-invalid');
                         $pass2[0].setCustomValidity('Passwords do not match');
                         $pass2[0].reportValidity();
+                    } if (res == -5) { //invalid username
+                        const $username = $('input[name="username"]');
+                        $username.addClass('is-invalid');
+                        $username[0].setCustomValidity('Username already taken');
+                        $username[0].reportValidity();
                     } else if (res == -6) { //email taken
                         const $email = $('input[name="email"]');
                         $email.addClass('is-invalid');
