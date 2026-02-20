@@ -60,12 +60,12 @@ require_once __DIR__ . "/../topScript.php";
                                 autocomplete="new-password" id="pass2">
                         </div>
 
-                        <div class="mb-3 form-check">
+                        <!-- <div class="mb-3 form-check">
                             <input class="form-check-input" type="checkbox" value="1" id="terms" required>
                             <label class="form-check-label" for="terms">
                                 I agree to the <a class="muted-link" href="#">Terms</a>.
                             </label>
-                        </div>
+                        </div> -->
 
                         <button class="btn btn-primary w-100" type="submit">Create Account</button>
 
