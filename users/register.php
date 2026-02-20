@@ -85,23 +85,31 @@ require_once __DIR__ . "/../topScript.php";
     ?>
 
     <script>
-        const pass = document.getElementById('pass');
-        const pass2 = document.getElementById('pass2');
-        const toggle = document.getElementById('togglePass');
+        $(function () {
 
-        toggle.addEventListener('click', () => {
-            const isHidden = pass.type === 'password';
-            pass.type = isHidden ? 'text' : 'password';
-            toggle.textContent = isHidden ? 'Hide' : 'Show';
-        });
+            const $pass = $('#pass');
+            const $pass2 = $('#pass2');
+            const $toggle = $('#togglePass');
 
-        document.getElementById('registerForm').addEventListener('submit', (e) => {
-            if (pass.value !== pass2.value) {
-                e.preventDefault();
-                alert('Passwords do not match.');
-            }
+            // Show / Hide password
+            $toggle.on('click', function () {
+                const isHidden = $pass.attr('type') === 'password';
+
+                $pass.attr('type', isHidden ? 'text' : 'password');
+                $(this).text(isHidden ? 'Hide' : 'Show');
+            });
+
+            // Form submit validation
+            $('#registerForm').on('submit', function (e) {
+                if ($pass.val() !== $pass2.val()) {
+                    e.preventDefault();
+                    alert('Passwords do not match.');
+                }
+            });
+
         });
     </script>
+
 </body>
 
 </html>
