@@ -9,6 +9,7 @@ function submitForm(formSelector, url, action = "", expJson = false, successFunc
     const form = $(formSelector)[0];
     const fd = new FormData(form);
     if (action) fd.append('action', action);
+    console.log(Object.fromEntries(fd.entries()));
 
     $.ajax({
         url: url,
@@ -28,3 +29,9 @@ function submitForm(formSelector, url, action = "", expJson = false, successFunc
 }
 
 //events
+//make inputs valid on input, change
+$(document).on('input change', 'input, select, textarea', function () {
+    this.setCustomValidity('');
+    $(this).removeClass('is-invalid');
+});
+

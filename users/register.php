@@ -103,7 +103,11 @@ require_once __DIR__ . "/../components/topScript.php";
             $('#registerForm').on('submit', function (e) {
                 e.preventDefault();
 
-                $('#registerForm .is-invalid').removeClass('is-invalid'); // remove is-invalid classes
+                //make fields valid
+                $('#registerForm .is-invalid').each(function () {
+                    this.setCustomValidity('');
+                    $(this).removeClass('is-invalid');
+                });
 
                 //Check passwords
                 if ($pass.val() !== $pass2.val()) {
@@ -114,7 +118,7 @@ require_once __DIR__ . "/../components/topScript.php";
                 }
 
                 //Submit the form
-                submitForm("#registerForm", "../backend/users/userRouter.php", "registerUser", false, successFunc = function (res) {
+                submitForm("#registerForm", "../backend/users/userRouter.php", "registerUser", false, function (res) {
 
                     if (res == 1) { //No errors
                         window.location.href = '../game.php'; //redirect user to game page

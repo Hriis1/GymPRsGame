@@ -92,10 +92,15 @@ require_once __DIR__ . "/../components/topScript.php";
             $('#loginForm').on('submit', function (e) {
                 e.preventDefault();
 
-                $('#loginForm .is-invalid').removeClass('is-invalid'); // remove is-invalid classes
+                //Make fields valid
+                $('#loginForm .is-invalid').each(function () {
+                    this.setCustomValidity('');
+                    $(this).removeClass('is-invalid');
+                });
+
 
                 //Submit the form
-                submitForm("#loginForm", "../backend/users/userRouter.php", "logInUser", false, successFunc = function (res) {
+                submitForm("#loginForm", "../backend/users/userRouter.php", "logInUser", false, function (res) {
 
                     if (res == 1) { //No errors
                         window.location.href = '../game.php'; //redirect user to game page
