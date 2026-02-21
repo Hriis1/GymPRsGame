@@ -48,25 +48,29 @@ require_once __DIR__ . "/topScriptExtended.php";
                     <!-- RIGHT SIDE -->
                     <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                        <!-- Not logged in -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Create Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Log In</a>
-                        </li>
+                        <?php if (!$user): ?>
+                            <!-- Not logged in -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= $projectRoot ?>/users/register.php">Create Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= $projectRoot ?>/users/login.php">Log In</a>
+                            </li>
+                        <?php else: ?>
+                            <!-- Logged in -->
+                            <li class="nav-item">
+                                <a id="log_out_btn" class="nav-link" href="#">Log Out</a>
+                            </li>
 
-                        <!-- Logged in -->
-                        <li class="nav-item">
-                            <a id="log_out_btn" class="nav-link" href="#">Log Out</a>
-                        </li>
+                            <!-- Circular Profile Icon -->
+                            <li class="nav-item ms-lg-3">
+                                <a href="#" class="profile-icon d-flex align-items-center justify-content-center">
+                                    <span>H</span>
+                                </a>
 
-                        <!-- Circular Profile Icon -->
-                        <li class="nav-item ms-lg-3">
-                            <a href="#" class="profile-icon d-flex align-items-center justify-content-center">
-                                <span>H</span>
-                            </a>
-                        </li>
+                            </li>
+
+                        <?php endif; ?>
 
                     </ul>
                 </div>

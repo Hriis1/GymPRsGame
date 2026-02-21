@@ -28,8 +28,7 @@ require_once __DIR__ . "/../components/topScript.php";
                         <div class="sub">Create your account and open your own gym!</div>
                     </div>
 
-                    <form method="POST" action="<?= $projectRoot; ?>/backend/auth/register.php" id="registerForm"
-                        novalidate>
+                    <form method="POST" action="<?= $projectRoot; ?>/backend/auth/register.php" id="registerForm">
 
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Username</label>

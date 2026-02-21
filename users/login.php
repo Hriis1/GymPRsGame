@@ -76,7 +76,6 @@ require_once __DIR__ . "/../components/topScript.php";
     <script>
         $(function () {
 
-            const $username = $('input[name="username"]');
             const $pass = $('#pass');
             const $toggle = $('#togglePass');
 
@@ -108,9 +107,9 @@ require_once __DIR__ . "/../components/topScript.php";
                     }
 
                     //Error
-                    $username.addClass('is-invalid');
-                    $username[0].setCustomValidity('Incorrect username or password');
-                    $username[0].reportValidity();
+                    $pass.addClass('is-invalid');
+                    $pass[0].setCustomValidity('Incorrect username or password');
+                    $pass[0].reportValidity();
                 });
             });
 
