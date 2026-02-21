@@ -15,4 +15,8 @@
 <script src="https://cdn.datatables.net/2.3.7/js/dataTables.bootstrap5.min.js"></script>
 
 <!-- Custom -->
+<script>
+    const projRoot = "<?= str_replace('\\', '/', $projectRoot) ?>";
+</script>
 <script src="<?= $projectRoot ?>/assets/js/main.js"></script>
+<script src="<?= $projectRoot ?>/assets/js/header.js"></script>

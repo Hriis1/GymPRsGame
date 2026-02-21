@@ -19,8 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pass = $_POST["password"] ?? "";
         $remember = isset($_POST["remember"]);
 
-        $res = \UserService::validateAndLogInUser($username, $pass, $remember,$mysqli);
+        $res = \UserService::validateAndLogInUser($username, $pass, $remember, $mysqli);
         echo $res;
+        exit;
+    }
+
+    if (($_POST["action"] ?? "") == "logOutUser") { //log out user
+        \UserService::logOutUser($mysqli);
+        echo 1;
         exit;
     }
 }

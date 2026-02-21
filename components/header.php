@@ -58,7 +58,7 @@ require_once __DIR__ . "/topScriptExtended.php";
 
                         <!-- Logged in -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Log Out</a>
+                            <a id="log_out_btn" class="nav-link" href="#">Log Out</a>
                         </li>
 
                         <!-- Circular Profile Icon -->
