@@ -5,5 +5,5 @@ require_once __DIR__ . "/includes.php";
 $projectRoot = str_replace(
     realpath($_SERVER['DOCUMENT_ROOT']),
     '',
-    realpath(__DIR__ . '/')
+    realpath(__DIR__ . '/../')
 );

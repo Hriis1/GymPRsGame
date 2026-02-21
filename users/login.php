@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../topScript.php";
+require_once __DIR__ . "/../components/topScript.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -69,7 +69,7 @@ require_once __DIR__ . "/../topScript.php";
     </div>
 
     <?php
-    require_once __DIR__ . "/../scripts.php";
+    require_once __DIR__ . "/../components/scripts.php";
     ?>
 
     <script>
