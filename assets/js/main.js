@@ -1,5 +1,5 @@
 //General function for submiting a form through ajax
-function submitForm(formSelector, url, action = "", expJson = true, successFunc = function (res) {
+function submitForm(formSelector, url, action = "", expJson = false, successFunc = function (res) {
     location.reload();
 }, method = "POST") {
 

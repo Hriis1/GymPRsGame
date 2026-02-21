@@ -52,6 +52,34 @@ class UserService
         return 1;
     }
 
+    static public function validateAndLogInUser(string $username, string $pass, bool $remember, mysqli $mysqli): int
+    {
+        //Select the user by username
+        $stmt = $mysqli->prepare("SELECT id, pass FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $res = $stmt->get_result();
+
+        if ($res->num_rows == 1) { //user was found
+
+            //get the res
+            $userRow = $res->fetch_assoc();
+            $stmt->close();
+
+            if (!password_verify($pass, $userRow["pass"])) //passwords dont match
+                return 0;
+
+            //log in user
+            self::logInUser($userRow["id"], $remember, $mysqli);
+
+            return 1;
+        }
+
+        //User wasnt found
+        $stmt->close();
+        return 0;
+    }
+
     static public function logOutUser(mysqli $mysqli)
     {
         //user id

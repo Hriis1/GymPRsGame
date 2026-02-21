@@ -27,11 +27,11 @@ require_once __DIR__ . "/../components/topScript.php";
                         </div>
                     </div>
 
-                    <form method="POST" action="<?= $projectRoot; ?>/backend/auth/login.php" id="loginForm" novalidate>
+                    <form method="POST" action="<?= $projectRoot; ?>/backend/auth/login.php" id="loginForm">
 
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Username</label>
-                            <input name="login" type="text" class="form-control" required autocomplete="username">
+                            <input name="username" type="text" class="form-control" required autocomplete="username">
                         </div>
 
                         <div class="mb-3">
@@ -51,14 +51,15 @@ require_once __DIR__ . "/../components/topScript.php";
                                 </label>
                             </div>
 
-                            <a class="muted-link mini" href="<?= $projectRoot ?>/forgotPassword.php">Forgot
+                            <a class="muted-link mini" href="<?= $projectRoot ?>/users/forgotPassword.php">Forgot
                                 password?</a>
                         </div>
 
                         <button class="btn btn-primary w-100" type="submit">Log In</button>
 
                         <div class="text-center mt-3 mini">
-                            Don’t have an account? <a class="muted-link" href="<?= $projectRoot ?>/users/register.php">Create
+                            Don’t have an account? <a class="muted-link"
+                                href="<?= $projectRoot ?>/users/register.php">Create
                                 one</a>
                         </div>
                     </form>
@@ -75,6 +76,7 @@ require_once __DIR__ . "/../components/topScript.php";
     <script>
         $(function () {
 
+            const $username = $('input[name="username"]');
             const $pass = $('#pass');
             const $toggle = $('#togglePass');
 
@@ -84,6 +86,27 @@ require_once __DIR__ . "/../components/topScript.php";
 
                 $pass.attr('type', isHidden ? 'text' : 'password');
                 $(this).text(isHidden ? 'Hide' : 'Show');
+            });
+
+            // Form submit
+            $('#loginForm').on('submit', function (e) {
+                e.preventDefault();
+
+                $('#loginForm .is-invalid').removeClass('is-invalid'); // remove is-invalid classes
+
+                //Submit the form
+                submitForm("#loginForm", "../backend/users/userRouter.php", "logInUser", false, successFunc = function (res) {
+
+                    if (res == 1) { //No errors
+                        window.location.href = '../game.php'; //redirect user to game page
+                        return;
+                    }
+
+                    //Error
+                    $username.addClass('is-invalid');
+                    $username[0].setCustomValidity('Incorrect username or password');
+                    $username[0].reportValidity();
+                });
             });
 
         });

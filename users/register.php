@@ -99,7 +99,7 @@ require_once __DIR__ . "/../components/topScript.php";
                 $(this).text(isHidden ? 'Hide' : 'Show');
             });
 
-            // Form submit validation
+            // Form submit
             $('#registerForm').on('submit', function (e) {
                 e.preventDefault();
 
@@ -118,6 +118,7 @@ require_once __DIR__ . "/../components/topScript.php";
 
                     if (res == 1) { //No errors
                         window.location.href = '../game.php'; //redirect user to game page
+                        return;
                     }
 
                     //Handle error

@@ -11,5 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $res = \UserService::registerUser($username, $email, $pass, $passConf, $mysqli);
         echo $res;
+        exit;
+    }
+
+    if (($_POST["action"] ?? "") == "logInUser") { //log in user
+        $username = $_POST["username"] ?? "";
+        $pass = $_POST["password"] ?? "";
+        $remember = isset($_POST["remember"]);
+
+        $res = \UserService::validateAndLogInUser($username, $pass, $remember,$mysqli);
+        echo $res;
+        exit;
     }
 }
