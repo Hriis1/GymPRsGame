@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . "/../utils/config/sessionConfig.php";
+require_once __DIR__ . "/../utils/config/dbConfig.php";
 require_once __DIR__ . "/../utils/dbUtils.php";
 class UserService
 {
@@ -68,6 +70,42 @@ class UserService
             //log out user
             unset($_SESSION["user_id"]);
         }
+    }
+
+    static public function getLoggedInUser(mysqli $mysqli)
+    {
+        //Check if user is logged in with session or remember token
+        $userId = (int) ($_SESSION["user_id"] ?? 0);
+        $user = null;
+        if ($userId) { //if the session var was set
+            $user = getFromDBByID("users", $userId, $mysqli);
+            return $user;
+        }
+
+        if (isset($_COOKIE["gym_pbs_remember_token"]) && $_COOKIE["gym_pbs_remember_token"] !== "") { //if the cookie was set
+
+            //get the hashed token
+            $userRememberToken = $_COOKIE["gym_pbs_remember_token"];
+            $hash = hash('sha256', $userRememberToken);
+
+            //check if user with this token exists
+            $stmt = $mysqli->prepare("SELECT id FROM users WHERE remember_token = ? AND remember_token != ''");
+            $stmt->bind_param("s", $hash);
+            $stmt->execute();
+            $stmt->bind_result($userId);
+
+            //if a user was found log in and return it
+            if ($stmt->fetch()) {
+                $stmt->close();
+                self::logInUser($userId, false, $mysqli);
+                $user = getFromDBByID("users", $userId, $mysqli);
+                return $user;
+            }
+            $stmt->close();
+        }
+
+        //user wasnt found
+        return null;
     }
 
     //private
