@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../utils/config/sessionConfig.php";
-require_once __DIR__ . "/../utils/config/dbConfig.php";
+require_once __DIR__ . "/../config/sessionConfig.php";
+require_once __DIR__ . "/../config/dbConfig.php";
 require_once __DIR__ . "/../utils/dbUtils.php";
 class UserService
 {

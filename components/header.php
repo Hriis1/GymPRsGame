@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/topScript.php";
+require_once __DIR__ . "/topScriptExtended.php";
 ?>
 
 <!DOCTYPE html>
