@@ -30,12 +30,12 @@ require_once __DIR__ . "/../components/topScript.php";
                     <form method="POST" action="<?= $projectRoot; ?>/backend/auth/login.php" id="loginForm">
 
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">Username</label>
+                            <label class="form-label fw-semibold" style="margin-left: 5px;">Username</label>
                             <input name="username" type="text" class="form-control" required autocomplete="username">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">Password</label>
+                            <label class="form-label fw-semibold" style="margin-left: 5px;">Password</label>
                             <div class="input-group">
                                 <input name="password" type="password" class="form-control" required minlength="8"
                                     autocomplete="current-password" id="pass">
@@ -51,7 +51,7 @@ require_once __DIR__ . "/../components/topScript.php";
                                 </label>
                             </div>
 
-                            <a class="muted-link mini" href="<?= $projectRoot ?>/users/forgotPassword.php">Forgot
+                            <a class="muted-link mini" href="<?= $projectRoot ?>/users/forgotPassword.php" style="margin-right: 5px;">Forgot
                                 password?</a>
                         </div>
 
